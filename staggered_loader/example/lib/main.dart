@@ -42,6 +42,12 @@ class _DemoHomeState extends State<DemoHome> {
     Duration(milliseconds: 3000),
   ];
 
+  // 0ms (instant) through 2000ms in 100ms steps.
+  static final List<Duration> _loaderDelays = List.generate(
+    21,
+    (i) => Duration(milliseconds: i * 100),
+  );
+
   void _load() {
     setState(() {
       _future = widget.api.fetchItems();
@@ -63,6 +69,7 @@ class _DemoHomeState extends State<DemoHome> {
               onApiDurationChanged: (d) {
                 setState(() => widget.api.responseDelay = d);
               },
+              loaderDelays: _loaderDelays,
               loaderDelay: _delay,
               onLoaderDelayChanged: (d) => setState(() => _delay = d),
             ),
@@ -111,11 +118,15 @@ class _DemoHomeState extends State<DemoHome> {
   }
 }
 
+String _labelFor(Duration d) =>
+    d == Duration.zero ? 'instant' : '${d.inMilliseconds}ms';
+
 class _ControlRow extends StatelessWidget {
   const _ControlRow({
     required this.apiDurations,
     required this.currentApiDuration,
     required this.onApiDurationChanged,
+    required this.loaderDelays,
     required this.loaderDelay,
     required this.onLoaderDelayChanged,
   });
@@ -123,6 +134,7 @@ class _ControlRow extends StatelessWidget {
   final List<Duration> apiDurations;
   final Duration currentApiDuration;
   final ValueChanged<Duration> onApiDurationChanged;
+  final List<Duration> loaderDelays;
   final Duration loaderDelay;
   final ValueChanged<Duration> onLoaderDelayChanged;
 
@@ -150,15 +162,12 @@ class _ControlRow extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge),
         Wrap(
           spacing: 8,
+          runSpacing: 4,
           children: [
-            for (final d in const [
-              Duration(milliseconds: 500),
-              Duration(seconds: 1),
-              Duration(seconds: 2),
-            ])
+            for (final d in loaderDelays)
               ChoiceChip(
                 key: ValueKey('delay-${d.inMilliseconds}'),
-                label: Text('${d.inMilliseconds}ms'),
+                label: Text(_labelFor(d)),
                 selected: d == loaderDelay,
                 onSelected: (_) => onLoaderDelayChanged(d),
               ),
