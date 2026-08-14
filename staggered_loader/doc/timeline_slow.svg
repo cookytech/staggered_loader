@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13">
+  <style>
+    .axis { stroke: #334155; stroke-width: 1.5; }
+    .tick { stroke: #94a3b8; stroke-width: 1; }
+    .muted { fill: #64748b; }
+    .blank { fill: #e2e8f0; }
+    .loader { fill: #6366f1; }
+    .content { fill: #22c55e; }
+    .marker { fill: #ef4444; }
+    .rowlabel { fill: #0f172a; font-weight: 600; }
+  </style>
+
+  <text x="16" y="22" class="rowlabel">Timeline (0 → 2500ms) — same slow future (returns at 2200ms)</text>
+
+  <!-- Axis: 0 → 2500ms, 500px wide -->
+  <line x1="180" y1="230" x2="700" y2="230" class="axis"/>
+  <g class="tick">
+    <line x1="180" y1="228" x2="180" y2="234"/>
+    <line x1="284" y1="228" x2="284" y2="234"/>
+    <line x1="388" y1="228" x2="388" y2="234"/>
+    <line x1="492" y1="228" x2="492" y2="234"/>
+    <line x1="596" y1="228" x2="596" y2="234"/>
+    <line x1="700" y1="228" x2="700" y2="234"/>
+  </g>
+  <g class="muted">
+    <text x="180" y="250" text-anchor="middle">0</text>
+    <text x="284" y="250" text-anchor="middle">500ms</text>
+    <text x="388" y="250" text-anchor="middle">1000ms</text>
+    <text x="492" y="250" text-anchor="middle">1500ms</text>
+    <text x="596" y="250" text-anchor="middle">2000ms</text>
+    <text x="700" y="250" text-anchor="middle">2500ms</text>
+  </g>
+
+  <!-- Future resolve marker at 2200ms -->
+  <line x1="638" y1="45" x2="638" y2="220" stroke="#ef4444" stroke-dasharray="3,3"/>
+  <text x="638" y="42" text-anchor="middle" class="marker">future resolves @ 2200ms</text>
+
+  <!-- Row 1: Immediate loader (0ms delay) -->
+  <text x="16" y="82" class="rowlabel">Immediate</text>
+  <text x="16" y="98" class="muted">delay = 0ms</text>
+  <rect x="180" y="66" width="458" height="28" class="loader"/>
+  <rect x="638" y="66" width="62" height="28" class="content"/>
+  <text x="409" y="85" text-anchor="middle" fill="#fff">loader (2200ms)</text>
+  <text x="669" y="85" text-anchor="middle" fill="#fff">done</text>
+
+  <!-- Row 2: Staggered 400ms (Doherty) -->
+  <text x="16" y="142" class="rowlabel">Staggered</text>
+  <text x="16" y="158" class="muted">delay = 400ms (Doherty)</text>
+  <rect x="180" y="126" width="83" height="28" class="blank"/>
+  <rect x="263" y="126" width="375" height="28" class="loader"/>
+  <rect x="638" y="126" width="62" height="28" class="content"/>
+  <text x="221" y="145" text-anchor="middle" class="muted">blank</text>
+  <text x="450" y="145" text-anchor="middle" fill="#fff">loader (1800ms)</text>
+  <text x="669" y="145" text-anchor="middle" fill="#fff">done</text>
+
+  <!-- Row 3: Staggered 1000ms (Nielsen) — default -->
+  <text x="16" y="202" class="rowlabel">Staggered (default)</text>
+  <text x="16" y="218" class="muted">delay = 1000ms (Nielsen)</text>
+  <rect x="180" y="186" width="208" height="28" class="blank"/>
+  <rect x="388" y="186" width="250" height="28" class="loader"/>
+  <rect x="638" y="186" width="62" height="28" class="content"/>
+  <text x="284" y="205" text-anchor="middle" class="muted">blank (1000ms)</text>
+  <text x="513" y="205" text-anchor="middle" fill="#fff">loader (1200ms)</text>
+  <text x="669" y="205" text-anchor="middle" fill="#fff">done</text>
+</svg>
