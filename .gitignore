@@ -1,0 +1,29 @@
+# AW workspace metadata
+.aw_docs/
+.claude/
+
+# Flutter / Dart
+**/.dart_tool/
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/build/
+**/pubspec.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# macOS
+.DS_Store
+
+# Flutter symlinks (per platform build folders keep own)
+**/ios/Pods/
+**/macos/Pods/
+**/ephemeral/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/Flutter/flutter_assets/
+**/Flutter/ephemeral/
+**/GeneratedPluginRegistrant.*
