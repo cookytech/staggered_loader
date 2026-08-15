@@ -38,14 +38,14 @@ want feedback earlier.
 `Immediate` shows a shimmer that is immediately replaced by content. Users
 perceive this flash as *slower*, not faster, than showing nothing.
 
-![Fast future timeline](https://raw.githubusercontent.com/raveesh-me/flutter_staggered_loader/main/staggered_loader/doc/timeline.svg)
+![Fast future timeline](https://raw.githubusercontent.com/raveesh-me/flutter_staggered_loader/main/doc/timeline.svg)
 
 ### Slow future (2200 ms) — the loader still appears
 
 Once the deadline elapses, `StaggeredLoader` renders the loader. Users get
 progress feedback exactly when they need it.
 
-![Slow future timeline](https://raw.githubusercontent.com/raveesh-me/flutter_staggered_loader/main/staggered_loader/doc/timeline_slow.svg)
+![Slow future timeline](https://raw.githubusercontent.com/raveesh-me/flutter_staggered_loader/main/doc/timeline_slow.svg)
 
 ## Behavior
 
