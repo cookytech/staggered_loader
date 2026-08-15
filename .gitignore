@@ -2,6 +2,9 @@
 .aw_docs/
 .claude/
 
+# Local staging for external repos (never committed)
+staging/
+
 # Miscellaneous
 *.class
 *.log
